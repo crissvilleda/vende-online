@@ -37,46 +37,6 @@ class SideBar extends Component {
                                 <span>Home</span>
                             </NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink to="/page2" className="nav-link" activeClassName={'active'}>
-                                <div className="d-inline-block item-icon-wrapper">
-                                    <i className="material-icons">vertical_split</i>
-                                </div>
-                                <span>Basic components</span>
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/grids" className="nav-link" activeClassName={'active'}>
-                                <div className="d-inline-block item-icon-wrapper">
-                                    <i className="material-icons">vertical_split</i>
-                                </div>
-                                <span>Grids</span>
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/notifications" className="nav-link" activeClassName={'active'}>
-                                <div className="d-inline-block item-icon-wrapper">
-                                    <i className="material-icons">vertical_split</i>
-                                </div>
-                                <span>Notificaciones</span>
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/tabs" className="nav-link" activeClassName={'active'}>
-                                <div className="d-inline-block item-icon-wrapper">
-                                    <i className="material-icons">vertical_split</i>
-                                </div>
-                                <span>Tabs</span>
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/login" onClick={logOut} className="nav-link">
-                                <div className="d-inline-block item-icon-wrapper">
-                                    <i className="material-icons">lock</i>
-                                </div>
-                                <span>Log Out</span>
-                            </Link>
-                        </li>
                     </ul>
                 </div>
             </aside>

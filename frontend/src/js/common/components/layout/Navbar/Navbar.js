@@ -31,7 +31,6 @@ class Navbar extends Component {
                             <span className="d-none d-md-inline-block">{user.first_name}</span>
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem header>Header</DropdownItem>
                             <DropdownItem>
                                 <Link tabIndex="0"
                                    to="/user-profile">
@@ -44,20 +43,6 @@ class Navbar extends Component {
                                    to="/edit-user-profile">
                                     <i className="material-icons"></i>
                                     Edit Profile
-                                </Link>
-                            </DropdownItem>
-                            <DropdownItem>
-                                <Link tabIndex="0"
-                                   to="/file-manager-list">
-                                    <i className="material-icons"></i>
-                                    Files
-                                </Link>
-                            </DropdownItem>
-                            <DropdownItem>
-                                <Link tabIndex="0"
-                                   to="/transaction-history">
-                                    <i className="material-icons"></i>
-                                    Transactions
                                 </Link>
                             </DropdownItem>
                             <DropdownItem divider />
