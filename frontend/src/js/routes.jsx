@@ -20,7 +20,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Grids from "./common/components/Examples/Grids";
 import Notificaciones from './common/components/Examples/Notificaciones';
 import ExampleTabs from './common/components/Examples/Tabs/Tabs';
+import Productos from './common/components/Productos/productoContainer';
+import ListaProductos from './common/components/Productos/listadoContainer'
 require('../style/index.css');
+import 'uikit/dist/css/uikit.min.css';
 
 module.exports = (
     <div>
@@ -34,6 +37,11 @@ module.exports = (
                 <ProtectedRoute exact path="/grids" component={Grids} />
                 <ProtectedRoute exact path="/notifications" component={Notificaciones} />
                 <ProtectedRoute exact path="/tabs" component={ExampleTabs} />
+                {/* Productos */}
+                <ProtectedRoute exact path="/productos" component={ListaProductos} />
+                <ProtectedRoute exact path="/productos/create" component={Productos} />
+                <ProtectedRoute exact path="/productos/:id/ver" component={Productos} />
+                <ProtectedRoute exact path="/productos/:id/editar" component={Productos} />
                 <Route component={NotFound} />
             </Switch>
         </div>
