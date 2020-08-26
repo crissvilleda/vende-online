@@ -13,3 +13,15 @@ class ProductoSerializer(serializers.ModelSerializer):
         model = Producto
         fields = "__all__"
         extra_kwargs = {'imagen': {'required': False}}
+
+
+class ReadProductoSerializer(serializers.ModelSerializer):
+    usuario = serializers.StringRelatedField()
+
+    class Meta:
+        model = Producto
+        fields = ('nombre',
+                  'descripción',
+                  'imagen',
+                  'precio',
+                  'cantidad', 'usuario')

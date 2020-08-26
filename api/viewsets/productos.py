@@ -4,15 +4,18 @@
 from django.core.files import File
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.decorators import action
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 
 # serializer
-from api.serializers import ProductoSerializer
+from api.serializers import ProductoSerializer, ReadProductoSerializer
 
 # modelos
 from api.models import Producto
+
 
 import json
 
@@ -23,6 +26,14 @@ class ProductosViewset(viewsets.ModelViewSet):
     filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
     search_fields = ('nombre', 'descripción')
     ordering_fields = ('nombre', 'precio')
+
+    def get_permissions(self):
+        permissions = []
+        if self.action == "productos":
+            permissions.append(AllowAny)
+        else:
+            permissions.append(IsAuthenticated)
+        return [p() for p in permissions]
 
     def get_queryset(self):
         queryset = Producto.objects.filter(activo=True)
@@ -54,7 +65,7 @@ class ProductosViewset(viewsets.ModelViewSet):
 
             data['usuario'] = self.request.user.id
             data['precio'] = float(data['precio'])
-            data['cantidad'] = int(data['cantidad'])                             
+            data['cantidad'] = int(data['cantidad'])
             serializer = self.get_serializer(data=data)
             serializer.is_valid(raise_exception=True)
             instance = self.get_object()
@@ -71,3 +82,15 @@ class ProductosViewset(viewsets.ModelViewSet):
         except Exception as e:
             return Response({'error': str(e)},
                             status=status.HTTP_404_NOT_FOUND)
+
+    @action(detail=False, methods=['get'])
+    def productos(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = ReadProductoSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)

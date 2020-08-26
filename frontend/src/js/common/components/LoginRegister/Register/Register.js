@@ -21,7 +21,8 @@ class Registro extends Component {
         return (
             <div className="blue-gradient-bg">
                 <div className="d-flex flex-column align-items-center pt-3 bienvenida">
-                    <h1 className="text-center">Bienvenido a Vendemas</h1>
+                    <h1 className="text-center">Vende Online</h1>
+                    <p>Registrarte y comienza a vender</p>
                 </div>
                 <br />
                 <div className="login-wrapper">
@@ -29,6 +30,7 @@ class Registro extends Component {
                         <h5 className="text-center pv">REGISTRO</h5>
                         <LoadMask loading={loader} light>
                             <RegisterForm onSubmit={onSubmit} />
+                            <br />
                             <span>¿Ya tienes cuenta?&nbsp;<Link to="/login">Ingresa aquí</Link></span>
                         </LoadMask>
                     </div>
