@@ -10,6 +10,7 @@ import Footer from "./common/components/layout/Footer/Footer";
 
 import Navbar from "./common/components/layout/Navbar/Navbar";
 import { VerifyLogin } from "./common/components/layout";
+import vendeLogo from '../assets/img/vende-online.png';
 
 class PrivateRouteBase extends Component {
     constructor(props) {
@@ -80,9 +81,20 @@ class PrivateRouteBase extends Component {
                     )
                 ) : (
                     <main className="main-content">
-                        <div style={{ height: "60px" }} className="main-navbar bg-white sticky-top">
-                            <div className="uk-margin-left uk-margin-top btn btn-white">
-                                <Link to="/login">Login</Link>
+                        <div style={{ height: "60px" }} className="main-navbar bg-white sticky-top uk-flex uk-flex-between">
+                            <a href="#" className="uk-margin-left navbar-brand">
+                                <div className="d-table m-auto">
+                                    <img
+                                        id="main-logo"
+                                        className="d-inline-block align-top mr-1"
+                                        src={vendeLogo}
+                                        alt="Logo"
+                                    />
+                                </div>
+                            </a>
+                            <div className="uk-flex uk-flex-middle">
+                                <Link style={{fontSize: "14px"}} className="btn"  to="/login">Login</Link>
+                                <Link style={{fontSize: "14px"}} className="btn" to="/login">Registrarte</Link>
 
                             </div>
                         </div>

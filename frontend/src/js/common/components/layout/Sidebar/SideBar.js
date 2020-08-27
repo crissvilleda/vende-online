@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link, NavLink} from "react-router-dom";
+import vendeLogo from "../../../../../assets/img/vende-online.png";
 
 class SideBar extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class SideBar extends Component {
                             <div className="d-table m-auto">
                                 <img id="main-logo"
                                     className="d-inline-block align-top mr-1"
-                                    src={require('assets/img/logo.png')}
+                                    src={vendeLogo}
                                     alt="Logo" />
                             </div>
                         </a>
