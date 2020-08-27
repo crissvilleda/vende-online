@@ -4,10 +4,11 @@ import Imagen from "../../../../assets/img/noImage.png";
 
 const Producto = (props) => {
     const { producto, me, ComprarBtn } = props;
-    const disable = !!(me && me.username === producto.usuario);
+    // const disable = !!((me && me.username === producto.usuario));
+    const disable = !!((me && (me.username === producto.usuario)) || producto.cantidad <= 0);
     return (
         <div className="container__producto">
-            <h3>{producto.nombre}</h3>
+            <h3 style={{ fontSize: "18px", fontWeight: "bold" }}>{producto.nombre}</h3>
             <div className="container__img">
                 {producto.imagen ? (
                     <img
@@ -19,12 +20,17 @@ const Producto = (props) => {
                 )}
             </div>
             <br />
+            <p style={{fontSize: "14px", fontWeight:"bold"}}>Descripción del producto: </p>
             <p>{producto.descripción}</p>
-            <p style={{fontWeight:"bold"}}>
-                <b>Cantidad disponible: </b>
-                {producto.cantidad}
+            <p style={{ fontWeight: "bold", fontSize: "14px" }}>
+                Cantidad disponible:
+                {` ${producto.cantidad}`}
             </p>
-            <div style={{marginTop : "10px"}}>
+            <p style={{fontSize: "12px", fontWeight: "bold"}}>
+                Vendido por:
+                {` ${producto.usuario}`}
+            </p>
+            <div style={{ marginTop: "10px" }}>
                 <button disabled={disable} onClick={() => ComprarBtn(producto)} className="btn btn-primary btn-sm" type="button">
                     Comprar
                 </button>

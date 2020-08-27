@@ -23,7 +23,6 @@ class Home extends Component {
         return (
             <React.Fragment>
                 <br />
-                <h3 className="uk-margin-large-left">Productos</h3>
                 <div className="container__flex">
                     {productos.results.map((producto, index) => (
                         <Producto key={index} producto={producto} me={me} ComprarBtn={ComprarBtn} />

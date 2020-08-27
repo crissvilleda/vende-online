@@ -94,7 +94,7 @@ class PrivateRouteBase extends Component {
                             </a>
                             <div className="uk-flex uk-flex-middle">
                                 <Link style={{fontSize: "14px"}} className="btn"  to="/login">Login</Link>
-                                <Link style={{fontSize: "14px"}} className="btn" to="/login">Registrarte</Link>
+                                <Link style={{fontSize: "14px"}} className="btn" to="/registro">Registrarte</Link>
 
                             </div>
                         </div>
