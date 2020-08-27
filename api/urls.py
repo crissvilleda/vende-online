@@ -7,7 +7,8 @@ from api import viewsets
 
 router = DefaultRouter()
 router.register(r'user', viewsets.UserViewset)
-router.register(r'productos',viewsets.ProductosViewset)
+router.register(r'productos', viewsets.ProductosViewset)
+router.register(r'ventas', viewsets.VentaViewset)
 
 
 urlpatterns = [

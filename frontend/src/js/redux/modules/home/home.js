@@ -1,4 +1,6 @@
 import { handleActions } from "redux-actions";
+import { initialize as initializeForm } from "redux-form";
+import { NotificationManager } from "react-notifications";
 import { api } from "api";
 
 const LOADER = "LOGIN_LOADER";
@@ -6,6 +8,7 @@ const PRODUCTOS = "PRODUCTOS";
 const PAGE = "PAGE";
 const PRODUCTO = "PRODUCTO_HOME";
 const SHOW_MODAL = "SHOW_MODAL";
+const UPDATE_PRODUCTOS = 'UPDATE_PRODUCTOS';
 
 // ------------------------------------
 // Pure Actions
@@ -33,6 +36,11 @@ const setProducto = producto => ({
 const setModal = showModal => ({
     type: SHOW_MODAL,
     showModal,
+});
+
+const setUpdate = update => ({
+    type: UPDATE_PRODUCTOS,
+    update,
 });
 
 export const reducers = {
@@ -66,24 +74,31 @@ export const reducers = {
             showModal,
         };
     },
+    [UPDATE_PRODUCTOS]: (state, { update }) => {
+        return {
+            ...state,
+            update,
+        };
+    },
 };
-
 
 // ------------------------------------
 // Actions
 // -
-const getProductos = (page = 1) => (dispatch, getStore) => {
+const getProductos = (page = 1) => (dispatch) => {
     const params = { page };
+    dispatch(setUpdate(false));
     dispatch(setLoader(true));
-    api.get('productos/productos', params).then((response) => {
-        dispatch(setProductos(response));
-        dispatch(setPage(page));
-    }).catch(() => {
-    }).finally(() => {
-        dispatch(setLoader(false));
-    });
+    api.get("productos/productos", params)
+        .then((response) => {
+            dispatch(setProductos(response));
+            dispatch(setPage(page));
+        })
+        .catch(() => {})
+        .finally(() => {
+            dispatch(setLoader(false));
+        });
 };
-
 
 const ComprarBtn = data => (dispatch) => {
     dispatch(setProducto(data));
@@ -94,9 +109,49 @@ const CancelarCompra = () => (dispatch) => {
     dispatch(setProducto({}));
     dispatch(setModal(false));
 };
-const RealizarCompra = () => (dispatch) => {
-    console.log("Compra exitosa");
-    dispatch(setModal(false));
+const RealizarCompra = (data, producto) => (dispatch) => {
+    const venta = {};
+    const cliente = {};
+    venta.producto = producto.id;
+    venta.cantidad = parseInt(data.cantidad, 10);
+    venta.total = data.total;
+    cliente.nombre = data.nombre;
+    cliente.dirección = data.dirección;
+    cliente.teléfono = data.teléfono;
+
+    dispatch(setLoader(true));
+    api.post("ventas", { venta, cliente })
+        .then(() => {
+            NotificationManager.success(
+                "Compra realizada Exitosamente",
+                "Éxito",
+                4000
+            );
+            dispatch(setUpdate(true));
+            dispatch(setModal(false));
+            dispatch(setProducto({}));
+        })
+        .catch(() => {
+            NotificationManager.error(
+                "Error al realizar la compra",
+                "Error",
+                3000
+            );
+        })
+        .finally(() => {
+            dispatch(setLoader(false));
+        });
+};
+
+const onChangeField = (value, precio) => (dispatch, getStore) => {
+    console.log(value, precio);
+    const { values } = getStore().form.ComprarForm;
+    const total = parseFloat(value) * precio;
+    const newState = {
+        ...values,
+        total,
+    };
+    dispatch(initializeForm("ComprarForm", newState));
 };
 
 export const actionsHome = {
@@ -104,8 +159,8 @@ export const actionsHome = {
     ComprarBtn,
     CancelarCompra,
     RealizarCompra,
+    onChangeField,
 };
-
 
 export const initialState = {
     loader: false,
@@ -116,5 +171,6 @@ export const initialState = {
     producto: {},
     page: 1,
     showModal: false,
+    update: false,
 };
 export default handleActions(reducers, initialState);

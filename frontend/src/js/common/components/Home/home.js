@@ -10,28 +10,16 @@ class Home extends Component {
         getProductos();
     };
 
-    /* isAuthenticated = () => {
-        const token = localStorage.getItem("token");
-        const { getMe, me } = this.props;
-        if (!!token && !!me.username) {
-            return true;
-        }
-        if (token) {
-            getMe();
-            return "Verifying";
-        }
-    }; */
     realizarCompra = (data) => {
         const { RealizarCompra, producto } = this.props;
-        RealizarCompra();
-        console.log(producto);
-        console.log({ data, producto });
+        RealizarCompra(data, producto);
     }
 
     render() {
-        const { productos, me, showModal, ComprarBtn, CancelarCompra, producto, RealizarCompra } = this.props;
-        /* //this.isAuthenticated();
-        console.log(me) */
+        const { productos, me, showModal, ComprarBtn, CancelarCompra, producto, onChangeField, update, getProductos } = this.props;
+        if (update) {
+            getProductos();
+        }
         return (
             <React.Fragment>
                 <br />
@@ -42,7 +30,12 @@ class Home extends Component {
                     ))}
                 </div>
                 <Modal titulo="Realizar Compra" showModal={showModal}>
-                    <ComprarForm onSubmit={this.realizarCompra} producto={producto} CancelarCompra={CancelarCompra} />
+                    <ComprarForm
+                        onSubmit={this.realizarCompra}
+                        producto={producto}
+                        CancelarCompra={CancelarCompra}
+                        onChangeField={onChangeField}
+                    />
                 </Modal>
 
             </React.Fragment>
