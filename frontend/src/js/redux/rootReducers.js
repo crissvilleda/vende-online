@@ -7,7 +7,8 @@ import profile from "./modules/cuenta/profile";
 import usuarios from "./modules/usuarios/usuarios";
 import notificaciones from "./modules/notificaciones/notificaciones";
 import productos from "./modules/productos/producto";
-import home from './modules/home/home'
+import home from './modules/home/home';
+import reportes from './modules/Reportes/reportes';
 
 export default combineReducers({
     form: formReducer,
@@ -19,4 +20,5 @@ export default combineReducers({
     notificaciones,
     productos,
     home,
+    reportes,
 });

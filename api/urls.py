@@ -9,6 +9,7 @@ router = DefaultRouter()
 router.register(r'user', viewsets.UserViewset)
 router.register(r'productos', viewsets.ProductosViewset)
 router.register(r'ventas', viewsets.VentaViewset)
+router.register(r'reportes', viewsets.ReportesViewset)
 
 
 urlpatterns = [

@@ -26,6 +26,7 @@ require('../style/index.css');
 import 'uikit/dist/css/uikit.min.css';
 import Home from './common/components/Home/HomeContainer';
 import HomeRoute from './HomeRouter';
+import Reportes from './common/components/Reportes/ReportesContainer';
 
 module.exports = (
     <div>
@@ -44,6 +45,7 @@ module.exports = (
                 <ProtectedRoute exact path="/productos/create" component={Productos} />
                 <ProtectedRoute exact path="/productos/:id/ver" component={Productos} />
                 <ProtectedRoute exact path="/productos/:id/editar" component={Productos} />
+                <ProtectedRoute exact path="/reportes" component={Reportes} />
                 <Route component={NotFound} />
             </Switch>
         </div>

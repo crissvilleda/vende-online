@@ -43,44 +43,6 @@ const setUpdate = update => ({
     update,
 });
 
-export const reducers = {
-    [LOADER]: (state, { loader }) => {
-        return {
-            ...state,
-            loader,
-        };
-    },
-    [PRODUCTOS]: (state, { productos }) => {
-        return {
-            ...state,
-            productos,
-        };
-    },
-    [PAGE]: (state, { page }) => {
-        return {
-            ...state,
-            page,
-        };
-    },
-    [PRODUCTO]: (state, { producto }) => {
-        return {
-            ...state,
-            producto,
-        };
-    },
-    [SHOW_MODAL]: (state, { showModal }) => {
-        return {
-            ...state,
-            showModal,
-        };
-    },
-    [UPDATE_PRODUCTOS]: (state, { update }) => {
-        return {
-            ...state,
-            update,
-        };
-    },
-};
 
 // ------------------------------------
 // Actions
@@ -161,6 +123,46 @@ export const actionsHome = {
     RealizarCompra,
     onChangeField,
 };
+
+export const reducers = {
+    [LOADER]: (state, { loader }) => {
+        return {
+            ...state,
+            loader,
+        };
+    },
+    [PRODUCTOS]: (state, { productos }) => {
+        return {
+            ...state,
+            productos,
+        };
+    },
+    [PAGE]: (state, { page }) => {
+        return {
+            ...state,
+            page,
+        };
+    },
+    [PRODUCTO]: (state, { producto }) => {
+        return {
+            ...state,
+            producto,
+        };
+    },
+    [SHOW_MODAL]: (state, { showModal }) => {
+        return {
+            ...state,
+            showModal,
+        };
+    },
+    [UPDATE_PRODUCTOS]: (state, { update }) => {
+        return {
+            ...state,
+            update,
+        };
+    },
+};
+
 
 export const initialState = {
     loader: false,

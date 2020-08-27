@@ -18,6 +18,7 @@ export default class listaProducto extends Component {
             listar,
             page,
         } = this.props;
+        console.log(data);
         return (
             <React.Fragment>
                 <br />
