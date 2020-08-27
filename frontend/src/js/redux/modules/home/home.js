@@ -4,6 +4,8 @@ import { api } from "api";
 const LOADER = "LOGIN_LOADER";
 const PRODUCTOS = "PRODUCTOS";
 const PAGE = "PAGE";
+const PRODUCTO = "PRODUCTO_HOME";
+const SHOW_MODAL = "SHOW_MODAL";
 
 // ------------------------------------
 // Pure Actions
@@ -24,6 +26,14 @@ const setPage = page => ({
     page,
 });
 
+const setProducto = producto => ({
+    type: PRODUCTO,
+    producto,
+});
+const setModal = showModal => ({
+    type: SHOW_MODAL,
+    showModal,
+});
 
 export const reducers = {
     [LOADER]: (state, { loader }) => {
@@ -44,13 +54,25 @@ export const reducers = {
             page,
         };
     },
+    [PRODUCTO]: (state, { producto }) => {
+        return {
+            ...state,
+            producto,
+        };
+    },
+    [SHOW_MODAL]: (state, { showModal }) => {
+        return {
+            ...state,
+            showModal,
+        };
+    },
 };
 
 
 // ------------------------------------
 // Actions
 // -
-const getProductos = (page = 1) => (dispatch, getStore)=>{
+const getProductos = (page = 1) => (dispatch, getStore) => {
     const params = { page };
     dispatch(setLoader(true));
     api.get('productos/productos', params).then((response) => {
@@ -62,9 +84,28 @@ const getProductos = (page = 1) => (dispatch, getStore)=>{
     });
 };
 
+
+const ComprarBtn = data => (dispatch) => {
+    dispatch(setProducto(data));
+    dispatch(setModal(true));
+};
+
+const CancelarCompra = () => (dispatch) => {
+    dispatch(setProducto({}));
+    dispatch(setModal(false));
+};
+const RealizarCompra = () => (dispatch) => {
+    console.log("Compra exitosa");
+    dispatch(setModal(false));
+};
+
 export const actionsHome = {
     getProductos,
+    ComprarBtn,
+    CancelarCompra,
+    RealizarCompra,
 };
+
 
 export const initialState = {
     loader: false,
@@ -72,6 +113,8 @@ export const initialState = {
         count: 0,
         results: [],
     },
-    page:1
+    producto: {},
+    page: 1,
+    showModal: false,
 };
 export default handleActions(reducers, initialState);

@@ -1,12 +1,10 @@
 import React from "react";
 import Imagen from "../../../../assets/img/noImage.png";
 
+
 const Producto = (props) => {
-    const { producto, me } = props;
+    const { producto, me, ComprarBtn } = props;
     const disable = !!(me && me.username === producto.usuario);
-    console.log(disable);
-    console.log(producto.usuario);
-    console.log(me.username);
     return (
         <div className="container__producto">
             <h3>{producto.nombre}</h3>
@@ -22,8 +20,12 @@ const Producto = (props) => {
             </div>
             <br />
             <p>{producto.descripción}</p>
-            <div>
-                <button disabled={disable} className="btn btn-primary btn-sm" type="button">
+            <p style={{fontWeight:"bold"}}>
+                <b>Cantidad disponible: </b>
+                {producto.cantidad}
+            </p>
+            <div style={{marginTop : "10px"}}>
+                <button disabled={disable} onClick={() => ComprarBtn(producto)} className="btn btn-primary btn-sm" type="button">
                     Comprar
                 </button>
             </div>

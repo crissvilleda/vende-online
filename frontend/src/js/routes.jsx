@@ -25,6 +25,7 @@ import ListaProductos from './common/components/Productos/listadoContainer'
 require('../style/index.css');
 import 'uikit/dist/css/uikit.min.css';
 import Home from './common/components/Home/HomeContainer';
+import HomeRoute from './HomeRouter';
 
 module.exports = (
     <div>
@@ -32,7 +33,7 @@ module.exports = (
             <Switch>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/registro" component={Registro} />
-                <Route exact path="/" component={Home} />
+                <HomeRoute exact path="/" component={Home} />
                 <ProtectedRoute exact path="/page2" component={Examples} />
                 <ProtectedRoute exact path="/user-profile" component={Profile} />
                 <ProtectedRoute exact path="/grids" component={Grids} />

@@ -38,13 +38,6 @@ class Navbar extends Component {
                                     Profile
                                 </Link>
                             </DropdownItem>
-                            <DropdownItem>
-                                <Link tabIndex="0"
-                                   to="/edit-user-profile">
-                                    <i className="material-icons"></i>
-                                    Edit Profile
-                                </Link>
-                            </DropdownItem>
                             <DropdownItem divider />
                             <DropdownItem>
                                 <a tabIndex="0" className="text-danger" onClick={logOut} href="/">
