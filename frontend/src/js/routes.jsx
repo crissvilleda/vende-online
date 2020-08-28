@@ -35,11 +35,7 @@ module.exports = (
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/registro" component={Registro} />
                 <HomeRoute exact path="/" component={Home} />
-                <ProtectedRoute exact path="/page2" component={Examples} />
                 <ProtectedRoute exact path="/user-profile" component={Profile} />
-                <ProtectedRoute exact path="/grids" component={Grids} />
-                <ProtectedRoute exact path="/notifications" component={Notificaciones} />
-                <ProtectedRoute exact path="/tabs" component={ExampleTabs} />
                 {/* Productos */}
                 <ProtectedRoute exact path="/productos" component={ListaProductos} />
                 <ProtectedRoute exact path="/productos/create" component={Productos} />
