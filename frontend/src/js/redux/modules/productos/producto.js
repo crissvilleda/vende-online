@@ -15,17 +15,17 @@ const registrar = (data = {}, attachments = []) => (dispatch) => {
     api.postAttachments("productos", data, attachments)
         .then((response) => {
             NotificationManager.success(
-                "Datos actualizados exitosamente",
-                "ERROR",
+                "Se a registrado el producto exitosamente",
+                "Éxito",
                 1000
             );
             dispatch(push('/productos'));
         })
         .catch(() => {
             NotificationManager.error(
-                "Credenciales incorrectas, vuelva a intentar",
-                "Éxito",
-                0
+                "Error al registrar Producto",
+                "Error",
+                1000
             );
         })
         .finally(() => {});
@@ -43,9 +43,9 @@ const update = (id, data = {}, attachments = []) => (dispatch) => {
         })
         .catch(() => {
             NotificationManager.error(
-                "Credenciales incorrectas, vuelva a intentar",
+                "Error al actualizar el producto",
                 "ERROR",
-                0
+                1000
             );
         })
         .finally(() => {});
