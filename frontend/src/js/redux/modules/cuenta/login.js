@@ -38,7 +38,7 @@ export const onSubmit = (data = {}) => (dispatch, getStore) => {
         dispatch(setMe(response.user));
         dispatch(push("/"));
     }).catch(() => {
-        NotificationManager.error('Credenciales incorrectas, vuelva a intentar', 'ERROR', 0);
+        NotificationManager.error('Credenciales incorrectas, vuelva a intentar', 'ERROR', 2000);
     }).finally(() => {
         dispatch(setLoader(false));
     });
