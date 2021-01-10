@@ -87,6 +87,8 @@ class ProductosViewset(viewsets.ModelViewSet):
     def productos(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
 
+        queryset = queryset.filter(cantidad__gt=0)
+
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = ReadProductoSerializer(page, many=True)

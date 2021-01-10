@@ -13,3 +13,5 @@ db.sqlite3
 local_settings.py
 .vscode/
 media_devel/
+frontend/node_modules/
+frontend_admin/node_modules/

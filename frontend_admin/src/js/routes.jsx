@@ -32,16 +32,16 @@ module.exports = (
     <div>
         <div className="container__content">
             <Switch>
-                {/* <Route exact path="/login" component={Login} />
-                <Route exact path="/registro" component={Registro} /> */}
-                <HomeRoute exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/registro" component={Registro} />
+                <ProtectedRoute exact path="/" component={Home} />
                 {/* <ProtectedRoute exact path="/user-profile" component={Profile} /> */}
                 {/* Productos */}
-               {/*  <ProtectedRoute exact path="/productos" component={ListaProductos} />
+                <ProtectedRoute exact path="/productos" component={ListaProductos} />
                 <ProtectedRoute exact path="/productos/create" component={Productos} />
                 <ProtectedRoute exact path="/productos/:id/ver" component={Productos} />
                 <ProtectedRoute exact path="/productos/:id/editar" component={Productos} />
-                <ProtectedRoute exact path="/reportes" component={Reportes} /> */}
+                <ProtectedRoute exact path="/reportes" component={Reportes} />
                 <Route component={NotFound} />
             </Switch>
         </div>
